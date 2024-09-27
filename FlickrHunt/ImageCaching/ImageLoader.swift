@@ -31,7 +31,6 @@ class ImageLoader: ObservableObject {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 if let uiImage = UIImage(data: data) {
-                    // Cache the image
                     ImageCache.shared.setImage(uiImage, forKey: urlString)
                     DispatchQueue.main.async {
                         self.image = uiImage
