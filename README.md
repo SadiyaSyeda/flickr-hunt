@@ -54,6 +54,8 @@ The app follows the MVVM (Model-View-ViewModel) pattern:
 * **View**: Comprises SwiftUI views (FlickrImageSearchView, FlickrImageDetailView, etc.) that define the app's user interface.
 * **ViewModel**: Handles fetching data from the network, updates the views, and manages state. It includes:
 FlickrViewModel responsible for handling image search, fetching public photos, and managing the loading state.
+* **async/await**: Streamlines asynchronous network calls, allowing for more readable and maintainable code by avoiding callbacks.
+* **@MainActor**: Ensures that UI updates are performed on the main thread, promoting thread safety and a smoother user experience when updating the UI with data fetched asynchronously.
 
 # SwiftUI Previews
 
