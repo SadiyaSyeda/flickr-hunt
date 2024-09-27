@@ -17,15 +17,13 @@ struct AsyncFlickrImageView: View {
     }
     
     var body: some View {
-        // If image exists
+        // Use a placeholder until the image is loaded
         if let image = loader.image {
             Image(uiImage: image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-        } else { // if no image
+        } else {
             placeholder
                 .resizable()
-                .aspectRatio(contentMode: .fill)
         }
     }
 }

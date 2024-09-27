@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FlickrImage: Identifiable, Decodable {
+struct FlickrImage: Identifiable, Decodable, Encodable, Equatable {
     let id: String
     let title: String
     let description: String
@@ -15,11 +15,10 @@ struct FlickrImage: Identifiable, Decodable {
     let published: String
     let media: Media
 
-    struct Media: Decodable {
+    struct Media: Decodable, Encodable, Equatable {
         let m: String
     }
 
-    // Default initializer
     init(id: String = UUID().uuidString, title: String, description: String, author: String, published: String, media: Media) {
         self.id = id
         self.title = title
@@ -29,7 +28,6 @@ struct FlickrImage: Identifiable, Decodable {
         self.media = media
     }
 
-    // Handle decoding errors gracefully
     enum CodingKeys: String, CodingKey {
         case title, description, author, published, media
     }
@@ -42,11 +40,10 @@ struct FlickrImage: Identifiable, Decodable {
         self.published = try container.decode(String.self, forKey: .published)
         self.media = try container.decode(Media.self, forKey: .media)
 
-        self.id = UUID().uuidString // Generate a unique ID if not provided
+        self.id = UUID().uuidString
     }
 }
 
-
-struct FlickrResponse: Decodable {
+struct FlickrResponse: Decodable, Encodable {
     let items: [FlickrImage]
 }
